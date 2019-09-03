@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CardList from "./components/card-list/CardList.component";
+
 class App extends React.Component {
 
     constructor(props) {
@@ -21,12 +23,9 @@ class App extends React.Component {
         return !robots.length ?
             <h1 className='f1 white-90 tc'>Loading</h1> :
             (
-                <div className="App">
-                    {
-                        robots.map(robot => {
-                            return <h1 key={robot.id}>{robot.name}</h1>
-                        })
-                    }
+                <div className="tc">
+                    <h1 className="f1 white-90">CatFriends</h1>
+                    <CardList robots={ robots } />
                 </div>
             );
     }
