@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CardList from "../components/card-list/CardList.component";
 import Scroll from "../components/scroll/scroll.component";
 import SearchBox from "../components/search-box/SearchBox.component";
+import ErrorBoundary from "../components/error-boundaries/ErrorBoundary";
 
 import {setSearchField, requestRobots} from "../redux/actions";
 
@@ -42,7 +43,9 @@ class App extends React.Component {
                         {
                             isPending ?
                                 <h1 className='f1 white-90 tc'>Loading</h1> :
-                                <CardList robots={ filteredCats } />
+                                <ErrorBoundary>
+                                    <CardList robots={ filteredCats } />
+                                </ErrorBoundary>
                         }
                     </Scroll>
                 </div>
