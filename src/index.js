@@ -11,8 +11,14 @@ import { searchRobots, requestRobots } from "./redux/reducers";
 
 const logger = createLogger();
 
+const middlewares = [thunkMiddleware];
+
+if(process.env.NODE_ENV === 'development') {
+    middlewares.push(logger)
+}
+
 const rootReducer = combineReducers({searchRobots, requestRobots});
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 ReactDOM.render(
     <Provider store={store}>
